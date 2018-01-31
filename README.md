@@ -1,0 +1,123 @@
+# Drupal Issue Email Notifications
+
+drupal.org provides email notifications for project issues. Current
+functionality is rather primitive.
+
+This project aims to extend email notification capability with a configurable
+query (eg: filter by issue tag) for issues over multiple projects. For each
+selected issue, a configurable request is made to a transactional email
+provider.
+
+**Note:** Default configuration may cause a lot of email traffic. Specifing
+`issue_tags` and `projects` configuration is strongly recommended.
+
+**Note:** This project should be coupled with a cronjob to automate interval
+processing.
+
+**Note:** Incoming email provider may offer an automated tagging system. Use
+that combined with the projects configurable options to your advantage.
+
+## Terms
+
+- **TEP** - Transactional email provider
+
+## Supported TEPs
+
+Currently, only [Mailgun](https://www.mailgun.com) is supported. They have a
+nice free plan.
+
+## Secrets
+
+Sensitive information should be stored in `.secrets.json` and ignored from VCS.
+See `.secrets.example.json`.
+
+### `mailgun_api_key`
+
+- **Required:** True
+- **Type:** String
+
+Generated API key for authorisation.
+
+## Configuration
+
+All configuration is stored in `config.json`. See `config.example.json`.
+
+### `tep`
+
+- **Default:** `mailgun`
+- **Type:** String
+
+Transactional email provider, currently only supports `mailgun`.
+
+### `from`
+
+- **Required:** Yes
+- **Type:** String
+
+'from' email address sent to TEP.
+
+### `to`
+
+- **Required:** Yes
+- **Type:** String
+
+'to' email address sent to TEP.
+
+### `subject`
+
+- **Required**: Yes
+- **Template**: Yes
+- **Type:** String
+
+Email subject line sent to TEP.
+
+#### Template variables:
+
+- `{{ title }}` - Title of the issue
+- `{{ issue_tags }}` - Comma separated list of issue tag titles
+
+### `criteria_type`
+
+- **Default:** `created`
+- **Type:** String
+
+Select issues by either `created` or `updated`, sorted from latest to oldest.
+
+### `criteria_limit`
+
+- **Default:** `10`
+- **Type:** Integer
+
+Limit for `criteria_type`. By default, issues created within the first 10
+minutes of the initial request will be selected, unless either `criteria_limit`
+or `criteria_type` is changed.
+
+### `issue_tags`
+
+- **Default:** `*`
+- **Type:** Array => Integer
+
+Array of issue tag taxonomy term IDs. Determines which issue tags should
+be used for selection. By default, issues across all projects will used.
+
+*`todo`* - How do I find an issue tag ID?
+
+### `projects`
+
+- **Default:** `*`
+- **Type:** Array => Integer
+
+Array of project IDs. Used to determine which projects should be used for 
+issue selection. By default, issues across all projects will be tracked.
+
+*`todo`* - How do I find a project ID?
+
+## Usage
+
+*`todo`* - Add usage instructions.
+
+## Roadmap
+
+- Examples
+- Docker integration
+
