@@ -136,6 +136,5 @@ will be used.
 ## Roadmap
 
 - Examples
-- Docker integration
 - Issue status integration
 
