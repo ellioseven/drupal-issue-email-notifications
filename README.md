@@ -9,7 +9,7 @@ For each selected issue, a configurable request is sent to a transactional
 email provider.
 
 **Note:** Default configuration may cause a lot of email traffic. Specifing
-`issue_tags` and `projects` configuration is strongly recommended.
+`issue_tag` and `project` configuration is strongly recommended.
 
 **Note:** This project should be coupled with a cronjob to automate interval
 processing agsint multiple projects.
@@ -92,13 +92,13 @@ Limit for `criteria_type`. By default, issues created within the first 10
 minutes of the initial request will be selected, unless either `criteria_limit`
 or `criteria_type` is changed.
 
-### `issue_tags`
+### `issue_tag`
 
 - **Default:** `*`
-- **Type:** Array => Integer
+- **Type:** Integer
 
-Array of issue tag taxonomy term IDs. Determines which issue tags should
-be used for selection. By default, all issue tags will be included for issue
+Issue tag taxonomy term ID. Determines which issue tag should be used for
+selection, eg: `772` (Novice). By default, no issue tag is applied for issue
 selection.
 
 **`todo`** - How do I find an issue tag ID?
