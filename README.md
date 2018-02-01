@@ -102,7 +102,7 @@ be used for selection. By default, issues across all projects will used.
 
 **`todo`** - How do I find an issue tag ID?
 
-### `project
+### `project`
 
 - **Default:** `*`
 - **Type:** String
