@@ -105,9 +105,9 @@ be used for selection. By default, issues across all projects will used.
 ### `project`
 
 - **Default:** `*`
-- **Type:** String
+- **Type:** Integer
 
-Which project should be used to issue selection. By default, `drupal` (core)
+Which project should be used to issue selection. By default, `3060` (core)
 will be used.
 
 **`todo`** - How do I find a project ID?
