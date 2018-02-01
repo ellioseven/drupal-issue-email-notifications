@@ -17,6 +17,10 @@ processing agsint multiple projects.
 **Note:** Incoming email provider may offer an automated tagging system. Use
 that combined with the projects configurable options to your advantage.
 
+## tl;dr
+
+**`@todo`** - Add a tl;dr.
+
 ## Terms
 
 - **TEP** - Transactional email provider
