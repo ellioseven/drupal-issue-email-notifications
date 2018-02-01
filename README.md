@@ -74,7 +74,7 @@ Email subject line sent to TEP.
 #### Template variables:
 
 - `{{ title }}` - Title of the issue
-- `{{ issue_tags }}` - Comma separated list of issue tag titles
+- `{{ issue_tags }}` - Comma separated list of issue tag labels
 
 ### `criteria_type`
 
