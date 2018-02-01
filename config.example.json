@@ -6,5 +6,6 @@
 	 "criteria_type": "created",
 	 "criteria_limit": 10,
 	 "issue_tags": [1, 2, 3],
-	 "
+	 "project": "drupal"
 }
+
