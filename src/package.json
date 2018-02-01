@@ -1,0 +1,24 @@
+{
+  "name": "drupal-issue-email-notifications",
+  "version": "1.0.0",
+  "description": "Extended email notifications for Drupal issues.",
+  "main": "main.js",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "mailgun-js": "^0.14.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellioseven/drupal-issue-email-notifications.git"
+  },
+  "author": "Elliot Mitchum <elliot.mitchum@ellioseven.com.au>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ellioseven/drupal-issue-email-notifications/issues"
+  },
+  "homepage": "https://github.com/ellioseven/drupal-issue-email-notifications#readme"
+}
