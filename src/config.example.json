@@ -5,7 +5,7 @@
 	 "subject": "Drupal Issue: {{ title }} - {{ issue_tags }}",
 	 "criteria_type": "created",
 	 "criteria_limit": 10,
-	 "issue_tags": [1, 2, 3],
+	 "issue_tag": 772,
 	 "project": 3060
 }
 
