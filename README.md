@@ -121,3 +121,5 @@ will be used.
 
 - Examples
 - Docker integration
+- Issue status integration
+
