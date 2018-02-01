@@ -36,7 +36,7 @@ See `.secrets.example.json`.
 - **Required:** True
 - **Type:** String
 
-Generated API key for authorisation.
+Generated Mailgun API key for authorisation.
 
 **`@todo`** - How do I get my mailgun API key?
 
