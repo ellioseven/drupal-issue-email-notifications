@@ -1,18 +1,18 @@
 # Drupal Issue Email Notifications
 
-drupal.org provides email notifications for project issues. Current
-functionality is rather primitive.
+[drupal.org](https://drupal.org) provides email notifications for project
+issues. Current functionality is rather primitive.
 
 This project aims to extend email notification capability with a configurable
-query (eg: filter by issue tag) for issues over multiple projects. For each
-selected issue, a configurable request is made to a transactional email
-provider.
+issue query (eg: filter by issue tag) sent to [drupal.org](https://drupal.org).
+For each selected issue, a configurable request is sent to a transactional
+email provider.
 
 **Note:** Default configuration may cause a lot of email traffic. Specifing
 `issue_tags` and `projects` configuration is strongly recommended.
 
 **Note:** This project should be coupled with a cronjob to automate interval
-processing.
+processing agsint multiple projects.
 
 **Note:** Incoming email provider may offer an automated tagging system. Use
 that combined with the projects configurable options to your advantage.
@@ -100,24 +100,24 @@ or `criteria_type` is changed.
 Array of issue tag taxonomy term IDs. Determines which issue tags should
 be used for selection. By default, issues across all projects will used.
 
-*`todo`* - How do I find an issue tag ID?
+**`todo`** - How do I find an issue tag ID?
 
-### `projects`
+### `project
 
 - **Default:** `*`
-- **Type:** Array => Integer
+- **Type:** String
 
-Array of project IDs. Used to determine which projects should be used for 
-issue selection. By default, issues across all projects will be tracked.
+Which project should be used to issue selection. By default, `drupal` (core)
+will be used.
 
-*`todo`* - How do I find a project ID?
+**`todo`** - How do I find a project ID?
 
 ## Usage
 
-*`todo`* - Add usage instructions.
+**`todo`** - Add usage instructions.
+**`todo`** - Crontab instructions.
 
 ## Roadmap
 
 - Examples
 - Docker integration
-
