@@ -98,7 +98,8 @@ or `criteria_type` is changed.
 - **Type:** Array => Integer
 
 Array of issue tag taxonomy term IDs. Determines which issue tags should
-be used for selection. By default, issues across all projects will used.
+be used for selection. By default, all issue tags will be included for issue
+selection.
 
 **`todo`** - How do I find an issue tag ID?
 
