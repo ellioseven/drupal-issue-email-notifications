@@ -38,6 +38,17 @@ See `.secrets.example.json`.
 
 Generated API key for authorisation.
 
+**`@todo`** - How do I get my mailgun API key?
+
+### `mailgun_domain`
+
+- **Required:** True
+- **Type:** String
+
+Generated Mailgun domain.
+
+**`@todo`** - How do I get my mailgun domain?
+
 ## Configuration
 
 All configuration is stored in `config.json`. See `config.example.json`.
