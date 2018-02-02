@@ -78,6 +78,12 @@ const parseConfig = (options, secrets) => {
     throw new Error(`Missing required configuration: "${invalid}"`)
   }
 
+  // Check Mailgun configuration.
+  if (config.tep === "mailgun") {
+    if (!secrets.mailgun_api_key) throw Error("Mailgun API key is required")
+    if (!secrets.mailgun_domain) throw Error("Mailgun domain is required")
+  }
+
   return config
 }
 
