@@ -17,8 +17,8 @@ const main = () => {
   }
 
   // Merge user and defualt configuration.
-  const config = parseConfig({...defaults, ...options})
- 
+  const config = parseConfig(options, secrets)
+
   // Build API payload.
   const url = "https://www.drupal.org/api-d7/node.json"
   const params = parseApiParams(config)
@@ -47,8 +47,9 @@ const main = () => {
     })
 }
 
-const parseConfig = config => {
-  // Check required configuration.
+// Build configuration object.
+const parseConfig = (options, secrets) => {
+  // Required configuration keys.
   const required = [
     "tep",
     "subject",
@@ -58,7 +59,20 @@ const parseConfig = config => {
     "from",
     "to"
   ]
- 
+
+  // Default configuration object.
+  const defaults = {
+    tep: "mailgun",
+    subject: "Drupal Issue: {{ title }} - {{ issue_tags }}",
+    criteria_type: "created",
+    criteria_limit: 10,
+    project: 3060
+  }
+
+  // Merge user and defualt configuration.
+  const config = {...defaults, ...options}
+
+  // Check required configuration.
   let invalid = required.filter(req => !config[req])
   if (invalid.length) {
     throw new Error(`Missing required configuration: "${invalid}"`)
