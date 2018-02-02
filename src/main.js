@@ -4,6 +4,7 @@
 const axios = require("axios")
 const mailgun = require("./mailgun.js")
 
+// Entry point.
 const main = () => {
   const secrets = require("./.secrets")
   const options = require("./config")
@@ -87,6 +88,7 @@ const parseConfig = (options, secrets) => {
   return config
 }
 
+// Build API query object.
 const parseApiParams = args => {
   let params = {}
 
@@ -105,6 +107,7 @@ const parseApiParams = args => {
   // Parse issue tags.
   if (args.issue_tag) {
     if (args.issue_tag) {
+      // d.org uses "taxonomy_vocabulary_9" field to store issue tag terms.
       params.taxonomy_vocabulary_9 = args.issue_tag
     }
   }
@@ -112,6 +115,7 @@ const parseApiParams = args => {
   return params
 }
 
+// Filter node query against criteria.
 const parseNodes = (response, config) => {
   if (!response.data.list) return
   return response.data.list.filter(node => {
