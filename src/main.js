@@ -1,9 +1,3 @@
-// Set default configuration
-// Merge user configuration
-// Request issues
-// Build payload
-// Send request to TEP
-
 // @todo Parse templates for subject.
 // @todo Camelcase configuration keys.
 
