@@ -28,19 +28,10 @@ const main = () => {
   axios.get(url, {params})
     .then(response => {
       const nodes = parseNodes(response, config)
-      if ("mailgun" === config.tep) {
-        const apiKey = secrets.mailgun_api_key
-        const domain = secrets.mailgun_domain
-        nodes.forEach(node => {
-          mailgun.send(
-            apiKey,
-            domain,
-            config.from,
-            config.to,
-            config.subject,
-            node.body.value
-          )
-        })
+
+      // Invoke Mailgun response handler.
+      if (config.tep === "mailgun") {
+        sendMailgun(nodes, config, secrets)
       }
     })
     .catch(error => {
@@ -138,6 +129,24 @@ const parseNodes = (response, config) => {
         return node
       }
     }
+  })
+}
+
+// Mailgun TEP request hander.
+const sendMailgun = (nodes, config, secrets) => {
+  const apiKey = secrets.mailgun_api_key
+  const domain = secrets.mailgun_domain
+
+  // Send request via Malgun API.
+  nodes.forEach(node => {
+    mailgun.send(
+      apiKey,
+      domain,
+      config.from,
+      config.to,
+      config.subject,
+      node.body.value
+    )
   })
 }
 
