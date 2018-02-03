@@ -9,14 +9,6 @@ const main = () => {
   const secrets = require("./.secrets")
   const options = require("./config")
 
-  const defaults = {
-    tep: "mailgun",
-    subject: "Drupal Issue: {{ title }} - {{ issue_tags }}",
-    criteria_type: "created",
-    criteria_limit: 10,
-    project: 3060
-  }
-
   // Merge user and defualt configuration.
   const config = parseConfig(options, secrets)
 
