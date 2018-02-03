@@ -1,5 +1,6 @@
-// @todo Parse templates for subject.
+// @todo Editable message html.
 // @todo Camelcase configuration keys.
+// @todo Filter irrelevant issue tags from subject and message?
 
 const axios = require("axios")
 const mailgun = require("./mailgun.js")
