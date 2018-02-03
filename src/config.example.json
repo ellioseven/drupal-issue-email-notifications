@@ -2,7 +2,7 @@
 	 "tep": "mailgun",
 	 "from": "joe@example.com",
 	 "to": "joe@example.com",
-	 "subject": "Drupal Issue: {{ title }} - {{ issue_tags }}",
+	 "subject": "Drupal Issue - Project: {{ project }} - Title: {{ title }} - Issue Tags: {{ issue_tags }}",
 	 "criteria_type": "created",
 	 "criteria_limit": 10,
 	 "issue_tag": 772,

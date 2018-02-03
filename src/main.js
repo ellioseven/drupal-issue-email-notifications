@@ -3,7 +3,9 @@
 // @todo Filter irrelevant issue tags from subject and message?
 
 const axios = require("axios")
+const fs = require("fs")
 const mailgun = require("./mailgun.js")
+const mustache = require("mustache")
 
 // Entry point.
 const main = () => {
@@ -48,7 +50,7 @@ const parseConfig = (options, secrets) => {
   // Default configuration object.
   const defaults = {
     tep: "mailgun",
-    subject: "Drupal Issue: {{ title }} - {{ issue_tags }}",
+    subject: "Drupal Issue - Project: {{ project }} - Title: {{ title }} - Issue Tags: {{ issue_tags }}",
     criteria_type: "created",
     criteria_limit: 10,
     project: 3060
@@ -88,6 +90,11 @@ const parseApiParams = args => {
     params.sort = args.criteria_type
   }
 
+  // Parse project.
+  if (args.project) {
+    params.field_project = args.project
+  }
+
   // Parse issue tags.
   if (args.issue_tag) {
     if (args.issue_tag) {
@@ -100,6 +107,7 @@ const parseApiParams = args => {
 }
 
 // Filter node query against criteria.
+// @todo Store and cache human friendly names for issue tags and projects.
 const parseNodes = (response, config) => {
   if (!response.data.list) return
   return response.data.list.filter(node => {
@@ -125,6 +133,44 @@ const parseNodes = (response, config) => {
   })
 }
 
+// Build comma separated list of issue tags.
+const parseIssueTags = node => {
+  return node.taxonomy_vocabulary_9
+    .reduce((previous, term) => {
+      previous.push(term.id)
+      return previous
+    }, [])
+    .join(", ")
+}
+
+// Build TEP subject line.
+const parseSubject = (node, config) => {
+  let subject = config.subject
+  
+  const { title, field_project: { id: project } } = node
+  const issue_tags = parseIssueTags(node)
+
+  return mustache.render(subject, { title, project, issue_tags })
+}
+
+// Build TEP HTML.
+const parseHtml = (node, config) => {
+  const {
+    title,
+    url,
+    body: { value: body },
+    field_project: { id: project }
+  } = node
+
+  const issue_tags = parseIssueTags(node)
+
+  // Load message template.
+  const template = fs.readFileSync("message.html", "utf-8")
+
+  // Return parsed template.
+  return mustache.render(template, { title, url, body, project, issue_tags })
+}
+
 // Mailgun TEP request hander.
 const sendMailgun = (nodes, config, secrets) => {
   const apiKey = secrets.mailgun_api_key
@@ -137,10 +183,11 @@ const sendMailgun = (nodes, config, secrets) => {
       domain,
       config.from,
       config.to,
-      config.subject,
-      node.body.value
+      parseSubject(node, config),
+      parseHtml(node, config)
     )
   })
 }
 
 main()
+

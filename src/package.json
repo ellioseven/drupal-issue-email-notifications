@@ -5,7 +5,8 @@
   "main": "main.js",
   "dependencies": {
     "axios": "^0.17.1",
-    "mailgun-js": "^0.14.2"
+    "mailgun-js": "^0.14.2",
+    "mustache": "^2.3.0"
   },
   "devDependencies": {},
   "scripts": {

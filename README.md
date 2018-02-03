@@ -89,7 +89,9 @@ Email subject line sent to TEP.
 #### Template variables:
 
 - `{{ title }}` - Title of the issue
+- `{{ project }}` - Related project to issue 
 - `{{ issue_tags }}` - Comma separated list of issue tag labels
+
 
 ### `criteria_type`
 
@@ -123,8 +125,11 @@ selection.
 - **Default:** `*`
 - **Type:** Integer
 
-Which project should be used to issue selection. By default, `3060` (core)
-will be used.
+Which project should be used to issue selection. By default, all projects will
+be used for issue selection.
+
+**Note:** You may want to specify a project, otherwise you will receive quite
+a few emails.
 
 **`todo`** - How do I find a project ID?
 
